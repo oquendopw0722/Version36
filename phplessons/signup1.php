@@ -61,7 +61,7 @@
         <a href="../admin_deactivate.php">Account Deactivation</a>
         <a href="../archived_accounts.php">Archived Accounts</a>
         <a href="../my_account1.php">My Account</a>
-        <a href="#">Class Management</a>
+        <!-- <a href="#">Class Management</a>
         <a href="#">Assignment and Quizzes</a>
         <a href="#">Student Progress</a>
         <a href="#">Communication</a>
@@ -72,7 +72,7 @@
         <a href="#"></a>
         <a href="#"></a>
         <a href="#"></a>
-        <a href="#"></a>
+        <a href="#"></a> -->
     </div>
 
     <div class='Home_container'>

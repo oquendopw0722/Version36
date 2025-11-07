@@ -107,12 +107,12 @@ $conn->close();
       <a href="admin_deactivate.php">Account Deactivation</a>
       <a href="archived_accounts.php">Archived Accounts</a>
       <a href="my_account1.php">My Account</a>
+      <!-- <a href="#"></a>
       <a href="#"></a>
       <a href="#"></a>
       <a href="#"></a>
       <a href="#"></a>
-      <a href="#"></a>
-      <a href="#"></a>
+      <a href="#"></a> -->
     </div>
 
     <div class="Home_container">
