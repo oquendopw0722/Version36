@@ -223,9 +223,12 @@ $conn->close();
                                 <?php 
                                 $items = explode(',', $p['checklist_items']);
                                 foreach ($items as $item) {
-                                    if (trim($item)) {
-                                        list($desc, $checked) = explode(':', trim($item));
-                                        $symbol = $checked == '1' ? '✓' : '✗';
+                                    $item = trim($item);
+                                    if ($item !== '') {
+                                        $parts = explode(':', $item, 2);
+                                        $desc = trim($parts[0]);
+                                        $checked = isset($parts[1]) ? trim($parts[1]) : '0'; // Default 0 if missing
+                                        $symbol = $checked === '1' ? '✓' : '✗';
                                         echo "<li>$symbol " . htmlspecialchars($desc) . "</li>";
                                     }
                                 }
