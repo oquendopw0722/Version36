@@ -110,6 +110,30 @@ $conn->close();
             margin-top: 102px;
             overflow-y: scroll;
         }
+        /* Force dropdown and label to stack properly */
+.form-container label[for="role"],
+.form-container select#role {
+  display: block !important;
+  width: 100% !important;
+  margin-top: 10px;
+}
+
+/* Add consistent spacing between all form fields */
+.form-container label,
+.form-container input,
+.form-container select {
+  display: block !important;
+  width: 100%;
+  box-sizing: border-box;
+  margin-top: 10px;
+}
+
+/* Optional: add bottom spacing for clarity */
+.form-container input,
+.form-container select {
+  margin-bottom: 10px;
+}
+
     </style>
 </head>
 <body>

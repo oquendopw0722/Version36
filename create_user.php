@@ -19,13 +19,13 @@ $phone = $_POST['phone'];
 // 3. Hash the password BEFORE inserting
 $hashedPwd = password_hash($pwd, PASSWORD_BCRYPT);
 
-// 4. Insert into database
-$stmt = $conn->prepare("INSERT INTO users (username, pwd, email, role, first_name, last_name, phone)
-VALUES (?, ?, ?, ?, ?, ?, ?)");
+// 4. Insert into database (✅ now includes 'status')
+$stmt = $conn->prepare("INSERT INTO users (username, pwd, email, role, first_name, last_name, phone, status)
+VALUES (?, ?, ?, ?, ?, ?, ?, 'active')");
 $stmt->bind_param("sssssss", $username, $hashedPwd, $email, $role, $fname, $lname, $phone);
 
 if ($stmt->execute()) {
-    echo "<script>alert('User created successfully!'); window.location.href='dashboard3.php';</script>";
+    echo "<script>alert('User created successfully! Please log in.'); window.location.href='index.html';</script>";
 } else {
     echo "<script>alert('Error creating user: " . $conn->error . "');</script>";
 }

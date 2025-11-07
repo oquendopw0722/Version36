@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <title>Login Page</title>
@@ -7,25 +8,38 @@
   <style>
     /* --- Modal Background --- */
     .modal {
-      display: none; 
-      position: fixed; 
-      z-index: 1000; 
-      left: 0; 
-      top: 0; 
-      width: 100%; 
-      height: 100%; 
-      background-color: rgba(0,0,0,0.6);
+      display: none;
+      position: fixed;
+      z-index: 1000;
+      inset: 0;
+      /* shorthand for top, right, bottom, left = 0 */
+      background-color: rgba(0, 0, 0, 0.6);
+      overflow-y: auto;
+      /* allow scrolling if modal content is taller than screen */
     }
 
     /* --- Modal Content Box --- */
     .modal-content {
       background-color: #fff;
-      margin: 5% auto;
+      margin: 40px auto;
       padding: 20px;
       border-radius: 10px;
-      width: 400px;
-      box-shadow: 0 4px 10px rgba(0,0,0,0.3);
+      width: 90%;
+      max-width: 450px;
+      /* limit size on large screens */
+      box-shadow: 0 4px 10px rgba(0, 0, 0, 0.3);
       text-align: left;
+      position: relative;
+      resize: both;
+      /* allow user to manually resize */
+      overflow: auto;
+      /* keep content scrollable inside when resized */
+      max-height: 90vh;
+      /* never exceed 90% of viewport height */
+    }
+
+    .form-container {
+      width: auto;
     }
 
     /* --- Close Button --- */
@@ -36,15 +50,22 @@
       color: #555;
       cursor: pointer;
     }
-    .close:hover { color: red; }
+
+    .close:hover {
+      color: red;
+    }
 
     /* --- Form Styling --- */
-    input[type=text], input[type=password], input[type=email], input[type=tel] {
+    input[type=text],
+    input[type=password],
+    input[type=email],
+    input[type=tel] {
       width: 100%;
       padding: 10px;
       margin: 5px 0 12px 0;
       border: 1px solid #ccc;
       border-radius: 5px;
+      box-sizing: border-box;
     }
 
     button {
@@ -63,16 +84,56 @@
     .register-btn {
       background-color: #22c55e;
     }
+
     .register-btn:hover {
       background-color: #16a34a;
     }
+
+    /* --- Responsive Tweaks --- */
+    @media (max-height: 600px) {
+      .modal-content {
+        margin: 20px auto;
+        max-height: 85vh;
+      }
+    }
+
+    /* Force dropdown and label to stack properly */
+    .form-container label[for="role"],
+    .form-container select#role {
+      display: block !important;
+      width: 100% !important;
+      margin-top: 10px;
+    }
+
+    /* Add consistent spacing between all form fields */
+    .form-container label,
+    .form-container input,
+    .form-container select {
+      display: block !important;
+      width: 100%;
+      box-sizing: border-box;
+      margin-top: 10px;
+    }
+
+    /* Optional: add bottom spacing for clarity */
+    .form-container input,
+    .form-container select {
+      margin-bottom: 10px;
+    }
+
+    .role-select {
+      padding: 10px;
+      border-radius: 5px;
+      border: 1px solid #ccc;
+    }
   </style>
 </head>
+
 <body>
 
   <!-- === Login Form === -->
   <form action="login.php" method="POST">
-    <div class ="formhead">
+    <div class="formhead">
       <img class="pic" src="pictures/ANTIPOLO.png" alt="Logo">
       <h2>LOGIN</h2>
     </div>
@@ -89,11 +150,13 @@
   <p class="TextTitle"><b>DXXXX Daycare Center</b></p>
 
   <!-- === Registration Modal === -->
+  <!-- === Registration Modal === -->
   <div id="registerModal" class="modal">
     <div class="modal-content">
       <span class="close" id="closeModalBtn">&times;</span>
       <h2>Register New User</h2>
-      <form action="create_user.php" method="POST">
+
+      <form class="form-container" action="create_user.php" method="POST">
         <label>Username</label>
         <input type="text" name="username" required>
 
@@ -103,8 +166,13 @@
         <label>Email</label>
         <input type="email" name="email" required>
 
-        <label>Role</label>
-        <input type="text" name="role" placeholder="e.g. admin, staff" required>
+        <label>Select Role:</label>
+        <select class="role-select" name="role" id="role" required>
+          <option value="">-- Choose Role --</option>
+          <option value="admin">Admin</option>
+          <option value="teacher">Teacher</option>
+          <option value="parent">Parent</option>
+        </select>
 
         <label>First Name</label>
         <input type="text" name="first_name" required>
@@ -120,6 +188,7 @@
     </div>
   </div>
 
+
   <!-- === Modal JavaScript === -->
   <script>
     const modal = document.getElementById("registerModal");
@@ -134,4 +203,5 @@
   </script>
 
 </body>
+
 </html>
